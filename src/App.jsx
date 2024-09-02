@@ -11,6 +11,24 @@ function App() {
     return savedActivities ? JSON.parse(savedActivities) : [];
   });
 
+  // State for weather
+  const [weather, setWeather] = useState(null);
+
+  // Fetch weather data on initial render
+  useEffect(() => {
+    fetch(
+      "https://api.open-meteo.com/v1/forecast?latitude=52.52&longitude=13.41&hourly=temperature_2m"
+    )
+      .then((response) => response.json())
+      .then((data) => {
+        const temperature = data.hourly.temperature_2m[0];
+        setWeather({ temperature, conditionEmoji: "🌧️" });
+      })
+      .catch((error) =>
+        console.error("Error fetching the weather data:", error)
+      );
+  }, []);
+
   // Saves activities in Local Storage when they change
   useEffect(() => {
     localStorage.setItem("activities", JSON.stringify(activities));
@@ -27,10 +45,8 @@ function App() {
     setActivities([activityWithId, ...activities]);
   }
 
-  // Hardcoded weather condition
-  const isGoodWeather = true;
-
   // Filter activities based on the weather
+  const isGoodWeather = weather ? weather.temperature > 15 : true; // Example condition: good weather if temperature > 15°C
   const filteredActivities = activities.filter(
     (activity) => activity.isForGoodWeather === isGoodWeather
   );
@@ -38,7 +54,16 @@ function App() {
   return (
     <div>
       <List activities={filteredActivities} isGoodWeather={isGoodWeather} />
-      <h2>Weather & Activities App </h2>
+      <h2>Weather & Activities App</h2>
+      {weather ? (
+        <div>
+          <h2>
+            {weather.conditionEmoji} {weather.temperature}°C
+          </h2>
+        </div>
+      ) : (
+        <p>Loading...</p>
+      )}
       {/* Pass the function for adding activities to the ActivityForm component */}
       <Form onAddActivity={handleAddActivity} />
     </div>
