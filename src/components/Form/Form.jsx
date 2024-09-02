@@ -5,7 +5,7 @@ export default function Form({ onAddActivity }) {
   const [name, setName] = useState(""); // State for the name of the activity
   const [isForGoodWeather, setIsForGoodWeather] = useState(false); // State for the weather category (true/false)
 
-  // Function that is called when the form is sent
+  // Function that is called when the form is submitted
   function handleSubmit(event) {
     event.preventDefault(); // Prevents the default behavior of the form (page reload)
 
@@ -25,7 +25,7 @@ export default function Form({ onAddActivity }) {
 
   return (
     <form onSubmit={handleSubmit}>
-      <h2>Add new Activity</h2>
+      <h3>Add new Activity</h3>
       <div>
         <label htmlFor="name">Name: </label>
         <input
