@@ -47,6 +47,15 @@ function App() {
     setActivities([activityWithId, ...activities]);
   }
 
+  function handleDeleteActivity(id) {
+    // Filters activities so that only those activities remain in state, whose id does not correspond to transferred id.
+    const updatedActivities = activities.filter(
+      (activity) => activity.id !== id
+    );
+    // Updates status with filtered activities.
+    setActivities(updatedActivities);
+  }
+
   // Filter activities based on the weather
   const filteredActivities = activities.filter(
     (activity) => activity.isForGoodWeather === weather?.isGoodWeather
@@ -63,6 +72,7 @@ function App() {
       <List
         activities={filteredActivities}
         isGoodWeather={weather?.isGoodWeather}
+        onDeleteActivity={handleDeleteActivity} // Die Delete-Funktion wird als Prop übergeben
       />
       {/* Pass the function for adding activities to the ActivityForm component */}
       <Form onAddActivity={handleAddActivity} />
