@@ -14,22 +14,30 @@ function App() {
   // State for weather, initialized as null
   const [weather, setWeather] = useState(null);
 
-  // useEffect hook to retrieve the weather data when rendering for the first time
-  useEffect(() => {
-    async function fetchWeather() {
-      try {
-        const response = await fetch(
-          "https://example-apis.vercel.app/api/weather"
-        );
-        const data = await response.json();
-        setWeather(data); // save weather data in state
-      } catch (error) {
-        console.error("Error retrieving weather data:", error);
-      }
+  // Async function to fetch weather data from API
+  async function fetchWeather() {
+    try {
+      const response = await fetch(
+        "https://example-apis.vercel.app/api/weather"
+      );
+      const data = await response.json();
+      setWeather(data); // save weather data in state
+    } catch (error) {
+      console.error("Error retrieving weather data:", error);
     }
+  }
 
-    fetchWeather(); // Call weather data
-  }, []); // Empty array. Effect is only executed on the first rendering
+  // useEffect hook to retrieve weather data every 5 seconds
+  useEffect(() => {
+    // Initial fetch
+    fetchWeather();
+
+    // Set interval to fetch weather every 5 seconds
+    const intervalId = setInterval(fetchWeather, 5000);
+
+    // Clear interval
+    return () => clearInterval(intervalId);
+  }, []); // Empty dependency array ensures effect runs only on mount and unmount
 
   // Saves activities in Local Storage when they change
   useEffect(() => {
@@ -72,7 +80,7 @@ function App() {
       <List
         activities={filteredActivities}
         isGoodWeather={weather?.isGoodWeather}
-        onDeleteActivity={handleDeleteActivity} // Die Delete-Funktion wird als Prop übergeben
+        onDeleteActivity={handleDeleteActivity} // Delete function passed as prop
       />
       {/* Pass the function for adding activities to the ActivityForm component */}
       <Form onAddActivity={handleAddActivity} />
