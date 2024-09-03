@@ -1,42 +1,54 @@
+:root {
+  --primary-bg-color: linear-gradient(to bottom, #4facfe, #00f2fe);
+  --primary-text-color: #ffffff;
+  --secondary-bg-color: rgba(255, 255, 255, 0.1);
+  --list-item-bg-color: rgba(255, 255, 255, 0.2);
+  --delete-button-hover-color: #ff6b6b;
+  --form-submit-button-bg-color: #4facfe;
+  --form-submit-button-hover-color: #00f2fe;
+  --checkbox-color: #ffffff;
+  --box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);
+}
+
 #root {
-  max-width: 1280px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
+  background: var(--primary-bg-color);
+  color: var(--primary-text-color);
+  min-height: 100vh;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+h2 {
+  font-size: 4rem;
+  margin: 1rem 0;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
+/* Size for mobile */
+@media (max-width: 480px) {
+  h2 {
+    font-size: 3rem;
   }
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
+/* Size for tablet */
+@media (min-width: 768px) and (max-width: 1024px) {
+  h2 {
+    font-size: 3.5rem;
   }
 }
 
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
+/* Size for PC */
+@media (min-width: 1024px) {
+  h2 {
+    font-size: 4rem;
+  }
 }

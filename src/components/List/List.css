@@ -1,0 +1,35 @@
+.activities-list {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.activity-list__item {
+  background: var(--list-item-bg-color);
+  padding: 1rem;
+  border-radius: 15px;
+  margin-bottom: 1rem;
+  box-shadow: var(--box-shadow);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--primary-text-color);
+}
+
+.activity-list__item h3 {
+  margin: 0;
+  font-size: 1.25rem;
+}
+
+.activity-list__item button {
+  background: none;
+  border: none;
+  color: var(--primary-text-color);
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.activity-list__item button:hover {
+  color: var(--delete-button-hover-color);
+}

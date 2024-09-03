@@ -1,4 +1,4 @@
-import { useState } from "react";
+import "./Form.css";
 
 export default function Form({ onAddActivity }) {
   // Call function when form is sent

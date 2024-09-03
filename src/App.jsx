@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import Form from "./components/Form/Form.jsx";
 import List from "./components/List/List.jsx";
 import { uid } from "uid"; // Unique ID for each activity
+import "./App.css";
 
 function App() {
   // State for activities
