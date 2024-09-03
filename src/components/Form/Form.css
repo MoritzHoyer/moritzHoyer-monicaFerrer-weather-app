@@ -1,0 +1,90 @@
+.form {
+  background: var(--secondary-bg-color);
+  padding: 1rem;
+  border-radius: 15px;
+  box-shadow: var(--box-shadow);
+  margin-bottom: 2rem;
+}
+
+.form__title {
+  font-size: 24px;
+  margin-bottom: 1rem;
+  color: var(--primary-text-color);
+  text-align: left;
+}
+
+.form__fields {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
+}
+
+.form__field {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.form__field label {
+  font-size: 16px;
+  color: var(--primary-text-color);
+  display: block;
+  text-align: left;
+  flex-basis: 100%; /* Ensures label and input stack on small screens */
+  margin-bottom: 0.5rem;
+}
+
+.form__field input[type="text"] {
+  width: 100%;
+  padding: 0.5rem;
+  border: none;
+  border-radius: 10px;
+  background-color: var(--list-item-bg-color);
+  color: var(--primary-text-color);
+  margin-bottom: 1rem;
+  box-sizing: border-box;
+}
+
+.form__field input[type="checkbox"] {
+  transform: scale(1.5);
+}
+
+.form__button-wrapper {
+  text-align: right;
+}
+
+.form__button-wrapper button {
+  background: var(--form-submit-button-bg-color);
+  color: var(--primary-text-color);
+  padding: 0.75rem 2rem;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.form__button-wrapper button:hover {
+  background: var(--form-submit-button-hover-color);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 480px) {
+  .form__title {
+    font-size: 20px;
+  }
+
+  .form__button-wrapper button {
+    padding: 0.5rem 1.5rem;
+  }
+}
+
+@media (min-width: 481px) and (max-width: 1024px) {
+  .form__title {
+    font-size: 22px;
+  }
+
+  .form__button-wrapper button {
+    padding: 0.65rem 1.75rem;
+  }
+}

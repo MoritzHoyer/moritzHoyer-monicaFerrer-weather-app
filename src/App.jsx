@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import Form from "./components/Form/Form.jsx";
 import List from "./components/List/List.jsx";
 import { uid } from "uid"; // Unique ID for each activity
+import "./App.css";
 
 function App() {
   // State for activities
@@ -13,12 +14,16 @@ function App() {
 
   // State for weather, initialized as null
   const [weather, setWeather] = useState(null);
+  const [selectedCity, setSelectedCity] = useState("europe");
+
+  // Available cities
+  const cities = ["europe", "arctic", "sahara", "rainforest"];
 
   // Async function to fetch weather data from API
-  async function fetchWeather() {
+  async function fetchWeather(city) {
     try {
       const response = await fetch(
-        "https://example-apis.vercel.app/api/weather"
+        `https://example-apis.vercel.app/api/weather/${city}`
       );
       const data = await response.json();
       setWeather(data); // save weather data in state
@@ -30,14 +35,14 @@ function App() {
   // useEffect hook to retrieve weather data every 5 seconds
   useEffect(() => {
     // Initial fetch
-    fetchWeather();
+    fetchWeather(selectedCity);
 
     // Set interval to fetch weather every 5 seconds
-    const intervalId = setInterval(fetchWeather, 5000);
+    const intervalId = setInterval(() => fetchWeather(selectedCity), 5000);
 
     // Clear interval
     return () => clearInterval(intervalId);
-  }, []); // Empty dependency array ensures effect runs only on mount and unmount
+  }, [selectedCity]); // Empty dependency array ensures effect runs only on mount and unmount
 
   // Saves activities in Local Storage when they change
   useEffect(() => {
@@ -74,9 +79,20 @@ function App() {
       {/* Display of weather emoji + temperature, if available */}
       {weather && (
         <h2>
-          {weather.condition} {weather.temperature}°C
+          {weather.location}: {weather.condition} {weather.temperature}°C
         </h2>
       )}
+      <div className="city-selector">
+        {cities.map((city) => (
+          <button
+            key={city}
+            className={`city-button ${city === selectedCity ? "active" : ""}`}
+            onClick={() => setSelectedCity(city)}
+          >
+            {city.charAt(0).toUpperCase() + city.slice(1)}
+          </button>
+        ))}
+      </div>
       <List
         activities={filteredActivities}
         isGoodWeather={weather?.isGoodWeather}
