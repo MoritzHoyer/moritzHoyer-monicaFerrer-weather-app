@@ -1,50 +1,58 @@
 import { useState } from "react";
 
 export default function Form({ onAddActivity }) {
-  // useState hooks for the form inputs
-  const [name, setName] = useState(""); // State for the name of the activity
-  const [isForGoodWeather, setIsForGoodWeather] = useState(false); // State for the weather category (true/false)
-
-  // Function that is called when the form is submitted
+  // Call function when form is sent
   function handleSubmit(event) {
-    event.preventDefault(); // Prevents the default behavior of the form (page reload)
+    event.preventDefault(); // Prevents default behavior of form
 
-    // Create new activity object based on the form input
+    // Access to the form elements
+    const formElements = event.target.elements;
+    const isForGoodWeather = formElements.isForGoodWeather.checked;
+    const activityName = formElements.name.value;
+
+    // Create new activity object based on form data
     const newActivity = {
-      name, // Activity name
-      isForGoodWeather, // Boolean, whether the activity is suitable for good weather
+      name: activityName, // Name Activity
+      isForGoodWeather: isForGoodWeather, // Boolean, whether the activity is suitable for good weather
     };
 
-    // Pass the new activity to the passed function `onAddActivity`.
+    // Pass new activity to passed function `onAddActivity`.
     onAddActivity(newActivity);
 
     // Reset form
-    setName(""); // Clear activity name
-    setIsForGoodWeather(false); // Reset checkbox
+    event.target.reset();
+
+    // Set focus on the input field
+    const nameInput = formElements.name;
+    if (nameInput) {
+      nameInput.focus(); // Set focus on the input field
+    }
   }
 
   return (
-    <form onSubmit={handleSubmit}>
-      <h3>Add new Activity</h3>
-      <div>
-        <label htmlFor="name">Name: </label>
-        <input
-          type="text"
-          id="name"
-          value={name}
-          onChange={(e) => setName(e.target.value)} // Update state `name` on input
-        />
+    <form className="form" onSubmit={handleSubmit}>
+      <h2 className="form__title">Add New Activity</h2>
+      <div className="form__fields">
+        <div className="form__field">
+          <label htmlFor="name">Name: </label>
+          <input
+            type="text"
+            id="name"
+            name="name" // name attribute for form element
+          />
+        </div>
+        <div className="form__field">
+          <label htmlFor="isForGoodWeather">Good-Weather Activity</label>
+          <input
+            type="checkbox"
+            id="isForGoodWeather"
+            name="isForGoodWeather" // name attribute for form element
+          />
+        </div>
+        <div className="form__button-wrapper">
+          <button type="submit">Submit</button>
+        </div>
       </div>
-      <div>
-        <label htmlFor="isForGoodWeather">Good-weather activity</label>
-        <input
-          type="checkbox"
-          id="isForGoodWeather"
-          checked={isForGoodWeather}
-          onChange={(e) => setIsForGoodWeather(e.target.checked)} // Update state `isForGoodWeather` when checkbox is changed
-        />
-      </div>
-      <button type="submit">Submit</button> {/* Submit button */}
     </form>
   );
 }
