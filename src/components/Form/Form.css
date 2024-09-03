@@ -1,0 +1,72 @@
+.form {
+  background: linear-gradient(
+    135deg,
+    salmon,
+    LightSalmon
+  ); /* Fondo degradado */
+  padding: 20px;
+  margin: 15px;
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(229, 7, 140, 0.1); /* Sombra suave */
+  margin-bottom: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.form__title {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  color: LavenderBlush; /* Texto blanco */
+  text-align: left;
+}
+
+.form__fields {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem; /* Espacio entre campos */
+}
+
+.form__field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.form__field label {
+  font-size: 1rem;
+  color: LavenderBlush; /* Texto  */
+}
+
+.form__field input[type="text"] {
+  width: 100%;
+  padding: 0.75rem;
+  border: none;
+  border-radius: 10px;
+  background-color: rgba(223, 215, 215, 0.2); /* Fondo semi-transparente */
+  color: LavenderBlush; /* Texto  */
+  box-sizing: border-box;
+}
+
+.form__field input[type="checkbox"] {
+  transform: scale(1.5);
+}
+
+.form__button-wrapper {
+  text-align: right; /* Alinear botón a la derecha */
+}
+
+.form__button-wrapper button {
+  background: LavenderBlush; /* Fondo blanco */
+  color: #06beec; /* Color de texto */
+  padding: 0.75rem 2rem;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+.form__button-wrapper button:hover {
+  background: #06beec; /* Fondo al pasar el ratón */
+  color: LavenderBlush; /* Texto al pasar el ratón */
+}

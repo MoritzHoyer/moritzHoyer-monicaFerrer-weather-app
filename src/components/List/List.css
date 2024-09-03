@@ -1,0 +1,52 @@
+.activities-list {
+  list-style-type: none;
+  padding: 20px;
+  margin: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.activity-list__item {
+  background: linear-gradient(
+    135deg,
+    salmon,
+    LightSalmon
+  ); /* Fondo degradado */
+  padding: 1.5rem;
+  border-radius: 15px;
+  margin-bottom: 1rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: LavenderBlush; /* Texto blanco */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.activity-list__item:hover {
+  transform: translateY(-5px); /* Efecto de elevación */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Sombra más pronunciada */
+}
+
+.activity-list__item h3 {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.activity-list__item button {
+  background: none;
+  border: 2px solid LavenderBlush; /* Borde blanco */
+  color: LavenderBlush;
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 0.5rem 1rem;
+  border-radius: 10px; /* Bordes redondeados */
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+.activity-list__item button:hover {
+  background: LavenderBlush; /* Fondo blanco al pasar el ratón */
+  color: #2193b0; /* Color de texto al pasar el ratón */
+}

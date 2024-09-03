@@ -5,11 +5,11 @@ export default function List({ activities, isGoodWeather, onDeleteActivity }) {
   return (
     <div>
       {/* Dynamic headline based on the weather */}
-      <h2>
+      <h3>
         {isGoodWeather
           ? "The weather is awesome! Go outside and:"
           : "Bad weather outside! Here's what you can do now:"}
-      </h2>
+      </h3>
       {/* Unordered list for all activities */}
       <ul className="activities-list">
         {activities.map((activity) => (
